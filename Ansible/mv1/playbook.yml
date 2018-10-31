@@ -1,0 +1,9 @@
+---
+- hosts: all
+  become: true 
+  tasks:
+
+  - name: Just a Ping
+    ping: 
+  - name: Instalar Apache
+    apt: name=apache2
