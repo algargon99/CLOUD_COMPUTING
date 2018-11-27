@@ -1,0 +1,29 @@
+---
+- hosts: all
+  become: true
+  tasks:
+  - apt:
+     update_cache: yes
+  - name: Añado el apt_key
+    apt_key:
+     keyserver: hkp://p80.pool.sks-keyservers.net:80
+     id: 58118E89F3A912897C070ADBF76221572C52609D
+  - name: Añado repositorio de Docker
+    apt_repository:
+     repo: deb https://download.docker.com/linux/ubuntu trusty stable
+     state: present
+  - name: Actualizar repositorios e instalar Docker  
+    apt:
+     update_cache: yes
+     name: docker-ce
+     force: yes
+     state: present
+  - name: Añado el usuario Docker en el grupo sudoers
+    user:
+     name: Docker
+     group: root  
+  - name: Crear una imagen
+    docker_image:
+     name: 
+      
+     
